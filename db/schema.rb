@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_22_054539) do
+ActiveRecord::Schema.define(version: 2020_02_29_064150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,35 @@ ActiveRecord::Schema.define(version: 2020_02_22_054539) do
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "stripe_plan_id", null: false
+    t.string "nickname", null: false
+    t.integer "amount", null: false
+    t.string "currency", null: false
+    t.string "interval", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "currency", null: false
+    t.integer "amount", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer "plan_id", null: false
+    t.string "stripe_card_id"
+    t.string "stripe_customer_id"
+    t.string "stripe_subscription_id"
+    t.datetime "active_until", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
